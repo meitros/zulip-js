@@ -1,5 +1,3 @@
-import parseConfigFile from './zuliprc';
-
 const api = require('./api');
 
 const accounts = require('./resources/accounts');
@@ -47,9 +45,6 @@ function resources(config) {
 }
 
 async function zulip(initialConfig) {
-  if (initialConfig.zuliprc) {
-    return resources(await parseConfigFile(initialConfig.zuliprc));
-  }
   const config = initialConfig;
   if (config.realm.endsWith('/api')) {
     config.apiURL = `${config.realm}/v1`;
