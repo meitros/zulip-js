@@ -2,9 +2,7 @@ const helper = require('./helper');
 
 async function api(baseUrl, config, method, params) {
   const url = new URL(baseUrl);
-  const auth = Buffer.from(`${config.username}:${config.apiKey}`).toString(
-    'base64'
-  );
+  const auth = btoa(`${config.username}:${config.apiKey}`);
   const authHeader = `Basic ${auth}`;
   const options = { method, headers: { Authorization: authHeader } };
   if (method === 'POST') {
